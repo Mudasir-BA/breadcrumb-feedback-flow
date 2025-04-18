@@ -59,16 +59,16 @@ const InvoiceFeedbackForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Customer Details</h2>
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Customer Details</h2>
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name*</FormLabel>
+                <FormLabel className="text-amber-900">Name*</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="border-amber-200 focus:border-amber-400" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,9 +79,9 @@ const InvoiceFeedbackForm = () => {
             name="contact"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone/Email*</FormLabel>
+                <FormLabel className="text-amber-900">Phone/Email*</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="border-amber-200 focus:border-amber-400" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,9 +92,9 @@ const InvoiceFeedbackForm = () => {
             name="dateOfVisit"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Date of Visit*</FormLabel>
+                <FormLabel className="text-amber-900">Date of Visit*</FormLabel>
                 <FormControl>
-                  <Input type="date" {...field} />
+                  <Input type="date" {...field} className="border-amber-200 focus:border-amber-400" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,9 +105,9 @@ const InvoiceFeedbackForm = () => {
             name="shopLocation"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Shop Location</FormLabel>
+                <FormLabel className="text-amber-900">Shop Location</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="border-amber-200 focus:border-amber-400" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -118,9 +118,9 @@ const InvoiceFeedbackForm = () => {
             name="invoiceNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Invoice Number*</FormLabel>
+                <FormLabel className="text-amber-900">Invoice Number*</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} className="border-amber-200 focus:border-amber-400" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -128,14 +128,14 @@ const InvoiceFeedbackForm = () => {
           />
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Service & Staff Behaviour</h2>
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Service & Staff Behaviour</h2>
           <FormField
             control={form.control}
             name="staffBehavior"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>How would you rate the staff's behaviour and courtesy?*</FormLabel>
+                <FormLabel className="text-amber-900">How would you rate the staff's behaviour and courtesy?*</FormLabel>
                 <FormControl>
                   <StarRating rating={field.value} onRatingChange={field.onChange} />
                 </FormControl>
@@ -148,31 +148,73 @@ const InvoiceFeedbackForm = () => {
             name="staffAttentiveness"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Was the cashier/staff attentive and responsive?*</FormLabel>
+                <FormLabel className="text-amber-900">Was the cashier/staff attentive and responsive?*</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="flex flex-col space-y-1"
+                    className="flex gap-4"
                   >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="Yes" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Yes</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="No" />
-                      </FormControl>
-                      <FormLabel className="font-normal">No</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="Somewhat" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Somewhat</FormLabel>
-                    </FormItem>
+                    {["Yes", "No", "Somewhat"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="billingProcess"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Was the billing process smooth and fast?*</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex gap-4"
+                  >
+                    {["Yes", "No", "Somewhat"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="loyaltyPoints"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Was Loyalty Points offered?*</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex gap-4"
+                  >
+                    {["Yes", "No", "I don't know"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
                   </RadioGroup>
                 </FormControl>
                 <FormMessage />
@@ -181,9 +223,184 @@ const InvoiceFeedbackForm = () => {
           />
         </div>
 
-        {/* Add more sections following the same pattern */}
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Product Quality & Availability</h2>
+          <FormField
+            control={form.control}
+            name="productAvailability.answer"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Were the products you wanted available?*</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex gap-4"
+                  >
+                    {["Yes", "No"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="productAvailability.comment"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Please mention any items not available (Optional)</FormLabel>
+                <FormControl>
+                  <Textarea {...field} className="border-amber-200 focus:border-amber-400" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="productFreshness"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">How fresh did the items seem?*</FormLabel>
+                <FormControl>
+                  <StarRating rating={field.value} onRatingChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="packaging"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Were you satisfied with the product packaging and hygiene?*</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex gap-4"
+                  >
+                    {["Yes", "No", "Somewhat"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Cleanliness & Environment</h2>
+          <FormField
+            control={form.control}
+            name="cleanliness"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">How clean and organized was the shop?*</FormLabel>
+                <FormControl>
+                  <StarRating rating={field.value} onRatingChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Pricing & Value</h2>
+          <FormField
+            control={form.control}
+            name="pricing.answer"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Do you feel the product(s) were priced fairly?*</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex gap-4"
+                  >
+                    {["Yes", "No"].map((option) => (
+                      <FormItem key={option} className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={option} />
+                        </FormControl>
+                        <FormLabel className="font-normal text-amber-900">{option}</FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="pricing.comment"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Comments on pricing (Optional)</FormLabel>
+                <FormControl>
+                  <Textarea {...field} className="border-amber-200 focus:border-amber-400" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="space-y-4 bg-amber-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-bold text-amber-800">Overall Experience</h2>
+          <FormField
+            control={form.control}
+            name="overallSatisfaction"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Overall, how satisfied are you with your visit today?*</FormLabel>
+                <FormControl>
+                  <StarRating rating={field.value} onRatingChange={field.onChange} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="suggestions"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-amber-900">Do you have any suggestions or complaints about this specific visit?</FormLabel>
+                <FormControl>
+                  <Textarea {...field} className="border-amber-200 focus:border-amber-400" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         
-        <Button type="submit" className="w-full">Submit Feedback</Button>
+        <Button 
+          type="submit" 
+          className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+        >
+          Submit Feedback
+        </Button>
       </form>
     </Form>
   );
